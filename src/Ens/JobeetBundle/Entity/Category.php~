@@ -3,9 +3,9 @@
 namespace Ens\JobeetBundle\Entity;
 
 /**
- * Affiliate
+ * Category
  */
-class Affiliate
+class Category
 {
     /**
      * @var integer
@@ -15,22 +15,12 @@ class Affiliate
     /**
      * @var string
      */
-    private $url;
+    private $name;
 
     /**
-     * @var string
+     * @var \Doctrine\Common\Collections\Collection
      */
-    private $email;
-
-    /**
-     * @var string
-     */
-    private $token;
-
-    /**
-     * @var \DateTime
-     */
-    private $created_at;
+    private $jobs;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -42,6 +32,7 @@ class Affiliate
      */
     public function __construct()
     {
+        $this->jobs = new \Doctrine\Common\Collections\ArrayCollection();
         $this->category_affiliates = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -56,99 +47,61 @@ class Affiliate
     }
 
     /**
-     * Set url
+     * Set name
      *
-     * @param string $url
+     * @param string $name
      *
-     * @return Affiliate
+     * @return Category
      */
-    public function setUrl($url)
+    public function setName($name)
     {
-        $this->url = $url;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get url
+     * Get name
      *
      * @return string
      */
-    public function getUrl()
+    public function getName()
     {
-        return $this->url;
+        return $this->name;
     }
 
     /**
-     * Set email
+     * Add job
      *
-     * @param string $email
+     * @param \Ens\JobeetBundle\Entity\Job $job
      *
-     * @return Affiliate
+     * @return Category
      */
-    public function setEmail($email)
+    public function addJob(\Ens\JobeetBundle\Entity\Job $job)
     {
-        $this->email = $email;
+        $this->jobs[] = $job;
 
         return $this;
     }
 
     /**
-     * Get email
+     * Remove job
      *
-     * @return string
+     * @param \Ens\JobeetBundle\Entity\Job $job
      */
-    public function getEmail()
+    public function removeJob(\Ens\JobeetBundle\Entity\Job $job)
     {
-        return $this->email;
+        $this->jobs->removeElement($job);
     }
 
     /**
-     * Set token
+     * Get jobs
      *
-     * @param string $token
-     *
-     * @return Affiliate
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function setToken($token)
+    public function getJobs()
     {
-        $this->token = $token;
-
-        return $this;
-    }
-
-    /**
-     * Get token
-     *
-     * @return string
-     */
-    public function getToken()
-    {
-        return $this->token;
-    }
-
-    /**
-     * Set createdAt
-     *
-     * @param \DateTime $createdAt
-     *
-     * @return Affiliate
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->created_at = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return \DateTime
-     */
-    public function getCreatedAt()
-    {
-        return $this->created_at;
+        return $this->jobs;
     }
 
     /**
@@ -156,7 +109,7 @@ class Affiliate
      *
      * @param \Ens\JobeetBundle\Entity\CategoryAffiliate $categoryAffiliate
      *
-     * @return Affiliate
+     * @return Category
      */
     public function addCategoryAffiliate(\Ens\JobeetBundle\Entity\CategoryAffiliate $categoryAffiliate)
     {
@@ -184,11 +137,12 @@ class Affiliate
     {
         return $this->category_affiliates;
     }
+
     /**
-     * @ORM\PrePersist
+     * @return string
      */
-    public function setCreatedAtValue()
+    public function __toString()
     {
-        $this->created_at = new \DateTime();
+        return $this->getName();
     }
 }

@@ -40,10 +40,30 @@ class LoadJobData extends AbstractFixture implements OrderedFixtureInterface
         $job_extreme_sensio->setIsActivated(true);
         $job_extreme_sensio->setToken('job_extreme_sensio');
         $job_extreme_sensio->setEmail('job@example.com');
-        $job_extreme_sensio->setExpiresAt(new \DateTime('2012-10-10'));
+        $job_extreme_sensio->setExpiresAt(new \DateTime('2017-10-10'));
 
         $em->persist($job_sensio_labs);
         $em->persist($job_extreme_sensio);
+
+        $em->flush();
+
+        for($i = 100; $i <= 130; $i++)
+        {
+            $job = new Job();
+            $job->setCategory($em->merge($this->getReference('category-programming')));
+            $job->setType('full-time');
+            $job->setCompany('Company '.$i);
+            $job->setPosition('Web Developer');
+            $job->setLocation('Paris, France');
+            $job->setDescription('Lorem ipsum dolor sit amet, consectetur adipisicing elit.');
+            $job->setHowToApply('Send your resume to lorem.ipsum [at] dolor.sit');
+            $job->setIsPublic(true);
+            $job->setIsActivated(true);
+            $job->setToken('job_'.$i);
+            $job->setEmail('job@example.com');
+
+            $em->persist($job);
+        }
 
         $em->flush();
     }

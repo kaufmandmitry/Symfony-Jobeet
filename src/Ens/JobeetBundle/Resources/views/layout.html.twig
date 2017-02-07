@@ -18,7 +18,7 @@
 <div id="container">
     <div id="header">
         <div class="content">
-            <h1><a href="{{ path('ens_job') }}">
+            <h1><a href="{{ path('ens_jobeet_homepage') }}">
                     <img src="{{ asset('bundles/ensjobeet/images/logo.jpg') }}" alt="Jobeet Job Board" />
                 </a></h1>
 
@@ -26,7 +26,7 @@
                 <div class="post">
                     <h2>Ask for people</h2>
                     <div>
-                        <a href="{{ path('ens_job') }}">Post a Job</a>
+                        <a href="{{ path('ens_job_index') }}">Post a Job</a>
                     </div>
                 </div>
 
@@ -45,17 +45,17 @@
     </div>
 
     <div id="content">
-        {% if app.session.hasFlash('notice') %}
+        {% for flash_message in app.session.flashBag.get('notice') %}
             <div class="flash_notice">
-                {{ app.session.flash('notice') }}
+                {{ flash_message }}
             </div>
-        {% endif %}
+        {% endfor %}
 
-        {% if app.session.hasFlash('error') %}
+        {% for flash_message in app.session.flashBag.get('error') %}
             <div class="flash_error">
-                {{ app.session.flash('error') }}
+                {{ flash_message }}
             </div>
-        {% endif %}
+        {% endfor %}
 
         <div class="content">
             {% block content %}

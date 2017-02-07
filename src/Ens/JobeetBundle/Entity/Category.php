@@ -1,6 +1,7 @@
 <?php
 
 namespace Ens\JobeetBundle\Entity;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Category
@@ -145,5 +146,17 @@ class Category
     {
         return $this->getName();
     }
-}
 
+    private $active_jobs;
+
+
+    public function setActiveJobs($jobs)
+    {
+        $this->active_jobs = $jobs;
+    }
+
+    public function getActiveJobs()
+    {
+        return $this->active_jobs;
+    }
+}
