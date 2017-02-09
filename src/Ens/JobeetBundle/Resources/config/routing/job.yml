@@ -4,11 +4,16 @@ ens_job_index:
     methods:  GET
 
 ens_job_show:
-    path:     /job/{company}/{location}/{id}/{position}
+    path:  /{company}/{location}/{id}/{position}
     defaults: { _controller: "EnsJobeetBundle:Job:show" }
-    methods:  GET
     requirements:
-      id:  \d+
+        id:  \d+
+
+ens_job_preview:
+    path:  /{company}/{location}/{token}/{position}
+    defaults: { _controller: "EnsJobeetBundle:Job:preview" }
+    requirements:
+        token:  \w+
 
 ens_job_new:
     path:     /new
@@ -16,11 +21,15 @@ ens_job_new:
     methods:  [GET, POST]
 
 ens_job_edit:
-    path:     /{id}/edit
+    path:  /{token}/edit
     defaults: { _controller: "EnsJobeetBundle:Job:edit" }
-    methods:  [GET, POST]
+
+ens_job_update:
+    path:  /{token}/update
+    defaults: { _controller: "EnsJobeetBundle:Job:update" }
+    requirements: { _method: post }
 
 ens_job_delete:
-    path:     /{id}/delete
+    path:  /{token}/delete
     defaults: { _controller: "EnsJobeetBundle:Job:delete" }
-    methods:  DELETE
+    requirements: { _method: post }
