@@ -525,12 +525,12 @@ class Job
 
     public static function getTypes()
     {
-        return array('full-time' => 'Full time', 'part-time' => 'Part time', 'freelance' => 'Freelance');
+    return array('Full time' => 'full-time', 'Part time' => 'part-time', 'Freelance' => 'freelance');
     }
 
     public static function getTypeValues()
     {
-        return array_keys(self::getTypes());
+        return array_values(self::getTypes());
     }
 
     protected function getUploadDir()
@@ -603,5 +603,10 @@ class Job
     public function getDaysBeforeExpires()
     {
         return ceil(($this->getExpiresAt()->format('U') - time()) / 86400);
+    }
+
+    public function publish()
+    {
+        $this->setIsActivated(true);
     }
 }

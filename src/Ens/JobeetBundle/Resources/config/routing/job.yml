@@ -33,3 +33,12 @@ ens_job_delete:
     path:  /{token}/delete
     defaults: { _controller: "EnsJobeetBundle:Job:delete" }
     requirements: { _method: post }
+
+ens_job_create:
+    path:     /create
+    defaults: { _controller: "EnsJobeetBundle:Job:create" }
+
+ens_job_publish:
+    path:  /{token}/publish
+    defaults: { _controller: "EnsJobeetBundle:Job:publish" }
+    requirements: { _method: post }

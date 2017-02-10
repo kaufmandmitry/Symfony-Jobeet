@@ -1,5 +1,0 @@
-services:
-   choice:
-      class: Ens\JobeetBundle\Form\JobType
-      tags:
-         -  { name: form.type }
