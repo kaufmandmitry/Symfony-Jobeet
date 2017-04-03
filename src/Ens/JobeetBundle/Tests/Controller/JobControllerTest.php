@@ -71,5 +71,66 @@ class JobControllerTest extends WebTestCase
         // an expired job page forwards the user to a 404
         $crawler = $client->request('GET', sprintf('/job/sensio-labs/paris-france/%d/web-developer', $this->getExpiredJob()->getId()));
         $this->assertTrue(404 === $client->getResponse()->getStatusCode());
-  }
+    }
+
+    public function testJobForm()
+    {
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/ens_job/new');
+        $this->assertEquals('Ens\JobeetBundle\Controller\JobController::newAction', $client->getRequest()->attributes->get('_controller'));
+
+        $form = $crawler->selectButton('Preview your job')->form(array(
+            'ens_jobeetbundle_job[company]'      => 'Sensio Labs',
+            'ens_jobeetbundle_job[url]'          => 'http://www.sensio.com/',
+            'ens_jobeetbundle_job[file]'         => __DIR__.'/../../../../../web/bundles/ensjobeet/images/sensio-labs.gif',
+            'ens_jobeetbundle_job[position]'     => 'Developer',
+            'ens_jobeetbundle_job[location]'     => 'Atlanta, USA',
+            'ens_jobeetbundle_job[description]'  => 'You will work with symfony to develop websites for our customers.',
+            'ens_jobeetbundle_job[how_to_apply]' => 'Send me an email',
+            'ens_jobeetbundle_job[email]'        => 'for.a.job@example.com',
+            'ens_jobeetbundle_job[is_public]'    => false,
+        ));
+
+        $client->submit($form);
+        $this->assertEquals('Ens\JobeetBundle\Controller\JobController::newAction', $client->getRequest()->attributes->get('_controller'));
+    }
+
+    public function createJob($values = array())
+    {
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/ens_job/new');
+        $form = $crawler->selectButton('Preview your job')->form(array_merge(array(
+            'ens_jobeetbundle_job[company]'      => 'Sensio Labs',
+            'ens_jobeetbundle_job[url]'          => 'http://www.sensio.com/',
+            'ens_jobeetbundle_job[position]'     => 'Developer',
+            'ens_jobeetbundle_job[location]'     => 'Atlanta, USA',
+            'ens_jobeetbundle_job[description]'  => 'You will work with symfony to develop websites for our customers.',
+            'ens_jobeetbundle_job[how_to_apply]' => 'Send me an email',
+            'ens_jobeetbundle_job[email]'        => 'for.a.job@example.com',
+            'ens_jobeetbundle_job[is_public]'    => false,
+        ), $values));
+
+        $client->submit($form);
+        $client->followRedirect();
+
+        return $client;
+    }
+
+    public function testPublishJob()
+    {
+        $client = $this->createJob(array('ens_jobeetbundle_job[position]' => 'FOO1'));
+        $crawler = $client->getCrawler();
+        $form = $crawler->selectButton('Publish')->form();
+        $client->submit($form);
+
+        $kernel = static::createKernel();
+        $kernel->boot();
+        $em = $kernel->getContainer()->get('doctrine.orm.entity_manager');
+
+        $query = $em->createQuery('SELECT count(j.id) from EnsJobeetBundle:Job j WHERE j.position = :position AND j.is_activated = 1');
+        $query->setParameter('position', 'FOO1');
+        $this->assertTrue(0 < $query->getSingleScalarResult());
+    }
+
 }
