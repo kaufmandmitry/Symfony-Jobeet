@@ -21,8 +21,7 @@
 
 {% block content %}
     <h1>Job creation</h1>
-    <form action="{{ path('ens_job_create') }}" method="post">
-        {{ form_start(form) }}
+   {{ form_start(form, {'method': 'POST', 'action':  path('ens_job_create')}) }}
         <table id="job_form">
             <tfoot>
             <tr>
@@ -112,6 +111,5 @@
             </tr>
             </tbody>
         </table>
-        {{ form_rest(form) }}
-    </form>
+    {{ form_rest(form) }}
 {% endblock %}

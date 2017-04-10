@@ -525,7 +525,7 @@ class Job
 
     public static function getTypes()
     {
-    return array('Full time' => 'full-time', 'Part time' => 'part-time', 'Freelance' => 'freelance');
+        return array('Full time' => 'full-time', 'Part time' => 'part-time', 'Freelance' => 'freelance');
     }
 
     public static function getTypeValues()

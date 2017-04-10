@@ -10,7 +10,7 @@ class JobControllerTest extends WebTestCase
     {
         $kernel = static::createKernel();
         $kernel->boot();
-        $em = $kernel->getContainer()->get('doctrine.orm.entity_manager');
+        $em = $kernel->getContainer()->get('doctrine')->getManager();
 
         $query = $em->createQuery('SELECT j from EnsJobeetBundle:Job j LEFT JOIN j.category c WHERE c.slug = :slug AND j.expires_at > :date ORDER BY j.created_at DESC');
         $query->setParameter('slug', 'programming');
@@ -23,7 +23,7 @@ class JobControllerTest extends WebTestCase
     {
         $kernel = static::createKernel();
         $kernel->boot();
-        $em = $kernel->getContainer()->get('doctrine.orm.entity_manager');
+        $em = $kernel->getContainer()->get('doctrine')->getManager();
 
         $query = $em->createQuery('SELECT j from EnsJobeetBundle:Job j WHERE j.expires_at < :date');     $query->setParameter('date', date('Y-m-d H:i:s', time()));
         $query->setMaxResults(1);
@@ -78,7 +78,6 @@ class JobControllerTest extends WebTestCase
         $client = static::createClient();
 
         $crawler = $client->request('GET', '/ens_job/new');
-        $text = $crawler->text();
         $this->assertEquals('Ens\JobeetBundle\Controller\JobController::newAction', $client->getRequest()->attributes->get('_controller'));
 
         $form = $crawler->selectButton('Preview your job')->form(array(
@@ -91,10 +90,19 @@ class JobControllerTest extends WebTestCase
             'job[how_to_apply]' => 'Send me an email',
             'job[email]'        => 'for.a.job@example.com',
             'job[is_public]'    => false,
-        ))->disableValidation();
+        ));
 
-        $crawler = $client->submit($form)->filter('.error_list')->count();
-        $response = $client->getResponse()->getContent();
+        $client->submit($form);
         $this->assertEquals('Ens\JobeetBundle\Controller\JobController::createAction', $client->getRequest()->attributes->get('_controller'));
+
+        $kernel = static::createKernel();
+        $kernel->boot();
+        $em = $kernel->getContainer()->get('doctrine')->getManager();
+
+        $query = $em->createQuery('SELECT count(j.id) from EnsJobeetBundle:Job j WHERE j.location = :location AND j.is_activated IS NULL AND j.is_public = 0');
+        $query->setParameter('location', 'Atlanta, USA');
+        $res = $query->getSingleScalarResult();
+        $this->assertTrue(0 < $query->getSingleScalarResult());
     }
+
 }

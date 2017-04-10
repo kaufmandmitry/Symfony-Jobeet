@@ -82,7 +82,7 @@ class JobController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getEntityManager();
+            $em = $this->getDoctrine()->getManager();
 
             $em->persist($entity);
             $em->flush();
@@ -103,7 +103,7 @@ class JobController extends Controller
 
     public function editAction($token)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('EnsJobeetBundle:Job')->findOneByToken($token);
 
@@ -123,7 +123,7 @@ class JobController extends Controller
 
     public function updateAction(Request $request, $token)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('EnsJobeetBundle:Job')->findOneByToken($token);
 
@@ -162,7 +162,7 @@ class JobController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getEntityManager();
+            $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('EnsJobeetBundle:Job')->findOneByToken($token);
 
             if (!$entity) {
@@ -210,7 +210,7 @@ class JobController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getEntityManager();
+            $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('EnsJobeetBundle:Job')->findOneByToken($token);
 
             if (!$entity) {
