@@ -6,10 +6,10 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Ens\JobeetBundle\Entity\Job;
+use Ens\JobeetBundle\Entity\User;
 
-class JobeetCleanupCommand extends ContainerAwareCommand {
-
+class JobeetUsersCommand extends ContainerAwareCommand
+{
     protected function configure()
     {
         $this

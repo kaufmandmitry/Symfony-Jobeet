@@ -13,7 +13,7 @@ parameters:
 
 framework:
     #esi:             ~
-    translator:      { fallbacks: ["en"] }
+    translator:      { fallbacks: ["%locale%"] }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -76,7 +76,9 @@ swiftmailer:
 sonata_block:
     default_contexts: [cms]
     blocks:
-
-        # enable the SonataAdminBundle block
         sonata.admin.block.admin_list:
             contexts:   [admin]
+
+sonata_admin:
+    templates:
+        user_block: SonataAdminBundle:Core:user_block.html.twig

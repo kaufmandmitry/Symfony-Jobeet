@@ -10,3 +10,12 @@ EnsJobeetBundle_category:
     path:  /category/{slug}/{page}
     defaults: { _controller: EnsJobeetBundle:Category:show, page: 1 }
 
+login:
+    path:   /login
+    defaults:  { _controller: EnsJobeetBundle:Default:login }
+
+login_check:
+    path:   /login_check
+
+logout:
+    path:   /logout
