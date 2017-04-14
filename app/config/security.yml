@@ -1,7 +1,19 @@
 security:
+    encoders:
+            Ens\JobeetBundle\Entity\User:
+                algorithm: bcrypt
+
+    providers:
+
+            db_provider:
+                entity:
+                    class: Ens\JobeetBundle\Entity\User
+                    property: username
+
     firewalls:
-        secured_area:
+        main:
             pattern:    ^/
+            provider: db_provider
             anonymous: ~
             form_login:
                 login_path:  /login
@@ -12,10 +24,3 @@ security:
 
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
-
-    providers:
-          main:
-              entity: { class: Ens\JobeetBundle\Entity\User, property: username }
-
-    encoders:
-        Ens\JobeetBundle\Entity\User: sha512
