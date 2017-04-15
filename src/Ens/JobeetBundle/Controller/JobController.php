@@ -57,7 +57,7 @@ class JobController extends Controller
      * Finds and displays a job entity.
      *
      */
-    public function showAction(Job $id)
+    public function showAction(Request $request, Job $id)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -65,6 +65,22 @@ class JobController extends Controller
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Job entity.');
+        }
+
+        $session = $request->getSession();
+
+        // fetch jobs already stored in the job history
+        $jobs = $session->get('job_history', array());
+
+        // store the job as an array so we can put it in the session and avoid entity serialize errors
+        $job = array('id' => $entity->getId(), 'position' =>$entity->getPosition(), 'company' => $entity->getCompany(), 'companyslug' => $entity->getCompanySlug(), 'locationslug' => $entity->getLocationSlug(), 'positionslug' => $entity->getPositionSlug());
+
+        if (!in_array($job, $jobs)) {
+            // add the current job at the beginning of the array
+            array_unshift($jobs, $job);
+
+            // store the new job history back into the session
+            $session->set('job_history', array_slice($jobs, 0, 3));
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -230,7 +246,6 @@ class JobController extends Controller
 
             $this->addFlash('notice', 'Your job is now online for 30 days.');
         }
-
         return $this->redirect($this->generateUrl('ens_job_preview', array(
             'company' => $entity->getCompanySlug(),
             'location' => $entity->getLocationSlug(),
