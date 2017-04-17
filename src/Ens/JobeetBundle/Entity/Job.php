@@ -558,7 +558,7 @@ class Job
     {
         if (null !== $this->file) {
             // do whatever you want to generate a unique name
-            $this->logo = uniqid().'.'.$this->file->guessExtension();
+            $this->logo = uniqid().'.'.$this->file->getClientOriginalExtension();
         }
     }
 
@@ -566,6 +566,7 @@ class Job
     public function upload()
     {
         if (null === $this->file) {
+            die('file not found');
             return;
         }
 
