@@ -163,6 +163,7 @@ class JobController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+            $entity->doUpload();
             $em->persist($entity);
             $em->flush();
 

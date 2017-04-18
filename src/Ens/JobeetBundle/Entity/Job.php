@@ -575,6 +575,12 @@ class Job
         unset($this->file);
     }
 
+    public function doUpload()
+    {
+        $this->preUpload();
+        $this->upload();
+    }
+
 
     public function removeUpload()
     {
