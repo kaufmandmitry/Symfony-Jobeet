@@ -1,10 +1,10 @@
 <?php
 
 namespace Ens\JobeetBundle\Tests\Controller;
+use Ens\JobeetBundle\Tests\BaseTestSetup;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class JobControllerTest extends WebTestCase
+class JobControllerTest extends BaseTestSetup
 {
     public function getMostRecentProgrammingJob()
     {

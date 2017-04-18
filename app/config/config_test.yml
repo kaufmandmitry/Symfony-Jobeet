@@ -14,3 +14,12 @@ web_profiler:
 
 swiftmailer:
     disable_delivery: true
+
+doctrine:
+    dbal:
+        host:     127.0.0.1
+        dbname:   symfony_training_test
+        user:     work
+        password: work
+
+liip_functional_test: ~

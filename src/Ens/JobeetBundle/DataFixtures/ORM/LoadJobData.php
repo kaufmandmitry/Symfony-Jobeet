@@ -5,8 +5,9 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Ens\JobeetBundle\Entity\Job;
+use Ens\JobeetBundle\Tests\BaseTestSetup;
 
-class LoadJobData extends AbstractFixture implements OrderedFixtureInterface
+class LoadJobData extends BaseTestSetup implements OrderedFixtureInterface
 {
     public function load(ObjectManager $em)
     {
