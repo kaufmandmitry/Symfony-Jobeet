@@ -17,9 +17,13 @@ swiftmailer:
 
 doctrine:
     dbal:
-        host:     127.0.0.1
+        driver:   pdo_mysql
+        host:     "%database_host%"
+        port:     "%database_port%"
         dbname:   symfony_training_test
-        user:     work
-        password: work
+        user:     "%database_user%"
+        password: "%database_password%"
+        charset:  UTF8
 
-liip_functional_test: ~
+liip_functional_test:
+    cache_sqlite_db: true

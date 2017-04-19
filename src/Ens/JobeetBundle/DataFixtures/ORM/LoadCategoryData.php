@@ -5,8 +5,9 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Ens\JobeetBundle\Entity\Category;
+use Doctrine\Common\DataFixtures\FixtureInterface;
 
-class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterface
+class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterface, FixtureInterface
 {
     public function load(ObjectManager $em)
     {

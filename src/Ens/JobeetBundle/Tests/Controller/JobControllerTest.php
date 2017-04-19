@@ -3,7 +3,6 @@
 namespace Ens\JobeetBundle\Tests\Controller;
 use Ens\JobeetBundle\Tests\BaseTestSetup;
 
-
 class JobControllerTest extends BaseTestSetup
 {
     public function getMostRecentProgrammingJob()
@@ -181,7 +180,6 @@ class JobControllerTest extends BaseTestSetup
     public function testEditJob()
     {
         $client = $this->createJob(array('job[position]' => 'FOO3'), true);
-        $crawler = $client->getCrawler();
         $crawler = $client->request('GET', sprintf('/ens_job/%s/edit', $this->getJobByPosition('FOO3')->getToken()));
         $this->assertTrue(404 === $client->getResponse()->getStatusCode());
     }

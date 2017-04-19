@@ -3,6 +3,9 @@ namespace Ens\JobeetBundle\Tests;
 
 use Doctrine\ORM\Tools\SchemaTool;
 use Liip\FunctionalTestBundle\Test\WebTestCase;
+use Doctrine\Common\DataFixtures\Purger\ORMPurger;
+use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
+use Doctrine\Common\DataFixtures\Loader;
 
 
 abstract class BaseTestSetup extends WebTestCase
@@ -30,9 +33,8 @@ abstract class BaseTestSetup extends WebTestCase
         $this->postFixtureSetup();
 
         $this->loadFixtures(array(
-            'Ens\JobeetBundle\DataFixtures\ORM\LoadJobData',
-            'Ens\JobeetBundle\DataFixtures\ORM\LoadCategoryData'
+            'Ens\JobeetBundle\DataFixtures\ORM\LoadCategoryData',
+            'Ens\JobeetBundle\DataFixtures\ORM\LoadJobData'
         ));
-
     }
 }

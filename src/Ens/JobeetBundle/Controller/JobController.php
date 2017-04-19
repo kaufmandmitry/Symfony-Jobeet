@@ -271,13 +271,14 @@ class JobController extends Controller
     public function extendAction($token)
     {
         $form = $this->createExtendForm($token);
-        $request = Request::createFromGlobals();
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('EnsJobeetBundle:Job')->findOneByToken($token);
 
+        $request = Request::createFromGlobals();
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getEntityManager();
-            $entity = $em->getRepository('EnsJobeetBundle:Job')->findOneByToken($token);
+
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Job entity.');

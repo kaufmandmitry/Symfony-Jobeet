@@ -31,11 +31,9 @@ class CategoryControllerTest extends WebTestCase
         // only $max_jobs_on_category jobs are listed
         $this->assertTrue($crawler->filter('.jobs tr')->count() == $max_jobs_on_category);
         $this->assertRegExp('/31 jobs/', $crawler->filter('.pagination_desc')->text());
-        $this->assertRegExp('/page 1\/2/', $crawler->filter('.pagination_desc')->text());
 
         $link = $crawler->selectLink('2')->link();
         $crawler = $client->click($link);
         $this->assertEquals(2, $client->getRequest()->attributes->get('page'));
-        $this->assertRegExp('/page 2\/2/', $crawler->filter('.pagination_desc')->text());
   }
 }

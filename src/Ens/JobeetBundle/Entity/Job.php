@@ -566,7 +566,6 @@ class Job
     public function upload()
     {
         if (null === $this->file) {
-            die('file not found');
             return;
         }
 
