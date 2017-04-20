@@ -558,7 +558,7 @@ class Job
     {
         if (null !== $this->file) {
             // do whatever you want to generate a unique name
-            $this->logo = uniqid().'.'.$this->file->guessExtension();
+            $this->logo = uniqid().'.'.$this->file->getClientOriginalExtension();
         }
     }
 
@@ -572,6 +572,12 @@ class Job
         $this->file->move($this->getUploadRootDir(), $this->logo);
 
         unset($this->file);
+    }
+
+    public function doUpload()
+    {
+        $this->preUpload();
+        $this->upload();
     }
 
 

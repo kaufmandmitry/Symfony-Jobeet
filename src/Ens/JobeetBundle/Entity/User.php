@@ -5,7 +5,9 @@ namespace Ens\JobeetBundle\Entity;
 /**
  * User
  */
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping as ORM;
+use Sonata\AdminBundle\Util\ObjectAclManipulator;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -30,23 +32,6 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="string", length=64)
      */
     private $password;
-
-    /**
-     * @ORM\Column(type="string", length=60, unique=true)
-     */
-    private $email;
-
-    /**
-     * @ORM\Column(name="is_active", type="boolean")
-     */
-    private $isActive;
-
-    public function __construct()
-    {
-        $this->isActive = true;
-        // may not be needed, see section on salt below
-        // $this->salt = md5(uniqid(null, true));
-    }
 
     public function getUsername()
     {
