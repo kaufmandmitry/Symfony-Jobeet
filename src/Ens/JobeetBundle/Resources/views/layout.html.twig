@@ -8,7 +8,9 @@
     </title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset('bundles/ensjobeet/css/main.css') }}" type="text/css" media="all" />
+        {% stylesheets 'bundles/ensjobeet/css/*' filter='uglifycss' filter='cssrewrite'  %}
+            <link rel="stylesheet" href="{{ asset('bundles/ensjobeet/css/main.css') }}" type="text/css" media="all" />
+        {% endstylesheets %}
     {% endblock %}
     {% block javascripts %}
     {% endblock %}

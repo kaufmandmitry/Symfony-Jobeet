@@ -82,3 +82,12 @@ sonata_block:
 sonata_admin:
     templates:
         user_block: SonataAdminBundle/user_block.html.twig
+
+
+assetic:
+    filters:
+        uglifyjs2:
+            bin: /usr/local/bin/uglifyjs
+        uglifycss:
+            bin: /usr/local/bin/uglifycss
+        cssrewrite: ~
