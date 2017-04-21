@@ -21,6 +21,9 @@ class JobController extends Controller
      */
     public function indexAction(Request $request)
     {
+        var_dump($this->get('translator')->trans('Jobeet - Your best job board'));
+        die();
+
         $em = $this->getDoctrine()->getManager();
 
         $categories = $em->getRepository('EnsJobeetBundle:Category')->getWithJobs();

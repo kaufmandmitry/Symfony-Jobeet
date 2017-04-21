@@ -3,7 +3,9 @@
 <head>
     <title>
         {% block title %}
-            Jobeet - Your best job board
+            {% trans %}
+                Jobeet - Your best job board
+            {% endtrans %}
         {% endblock %}
     </title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -18,6 +20,9 @@
     <link rel="alternate" type="application/atom+xml" title="Latest Jobs" href="{{ url('ens_job_index', {'_format': 'atom'}) }}" />
 </head>
 <body>
+{% trans %}
+Jobeet - Your best job board
+{% endtrans %}
 <div id="container">
     <div id="header">
         <div class="content">
