@@ -20,6 +20,6 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Job edit</h1>
+    <h1>{% trans %}job.edit{% endtrans %}</h1>
     {% include 'EnsJobeetBundle:Job:form.html.twig' with {'form': edit_form, 'params': {'method': 'POST', 'action':  path('ens_job_update', { 'token': entity.token })}} %}
 {% endblock %}

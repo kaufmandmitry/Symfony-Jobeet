@@ -4,7 +4,7 @@
     <title>
         {% block title %}
             {% trans %}
-                Jobeet - Your best job board
+                title
             {% endtrans %}
         {% endblock %}
     </title>
@@ -20,9 +20,6 @@
     <link rel="alternate" type="application/atom+xml" title="Latest Jobs" href="{{ url('ens_job_index', {'_format': 'atom'}) }}" />
 </head>
 <body>
-{% trans %}
-Jobeet - Your best job board
-{% endtrans %}
 <div id="container">
     <div id="header">
         <div class="content">
@@ -34,17 +31,17 @@ Jobeet - Your best job board
                 <div class="post">
                     <h2>Ask for people</h2>
                     <div>
-                        <a href="{{ path('ens_job_new') }}">Post a Job</a>
+                        <a href="{{ path('ens_job_new') }}">{% trans %} post.a.job {% endtrans %}</a>
                     </div>
                 </div>
 
                 <div class="search">
-                    <h2>Ask for a job</h2>
+                    <h2>{% trans %} ask.for.a.job {% endtrans %}</h2>
                     <form action="" method="get">
                         <input type="text" name="keywords" id="search_keywords" />
                         <input type="submit" value="search" />
                         <div class="help">
-                            Enter some keywords (city, country, position, ...)
+                            {% trans %} enter.some.keywords {% endtrans %}
                         </div>
                     </form>
                 </div>
@@ -53,7 +50,7 @@ Jobeet - Your best job board
     </div>
 
     <div id="job_history">
-        Recent viewed jobs:
+        <div>{% trans %} recent.viewed.jobs {% endtrans %}:</div>
         <ul>
             {% for job in app.session.get('job_history') %}
                 <li>

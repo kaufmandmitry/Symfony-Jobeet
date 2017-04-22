@@ -10,19 +10,19 @@ ens_job_show:
         id:  \d+
 
 ens_job_preview:
-    path:  /{company}/{location}/{token}/{position}
-    defaults: { _controller: "EnsJobeetBundle:Job:preview" }
+    path:  /{company}/{location}/{token}/{position}/{_locale}
+    defaults: { _controller: "EnsJobeetBundle:Job:preview", _locale: "en"}
     requirements:
         token:  \w+
 
 ens_job_new:
-    path:     /new
-    defaults: { _controller: "EnsJobeetBundle:Job:new" }
+    path:     /new/{_locale}
+    defaults: { _controller: "EnsJobeetBundle:Job:new", _locale: "en" }
     methods:  [GET, POST]
 
 ens_job_edit:
-    path:  /{token}/edit
-    defaults: { _controller: "EnsJobeetBundle:Job:edit" }
+    path:  /{token}/edit/{_locale}
+    defaults: { _controller: "EnsJobeetBundle:Job:edit", _locale: "en" }
 
 ens_job_update:
     path:  /{token}/update

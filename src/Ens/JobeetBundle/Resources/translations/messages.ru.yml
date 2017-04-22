@@ -1,1 +1,44 @@
-'Jobeet - Your best job board': '__Jobeet - Your best job board'
+title: Jobeet - Лучшая доска объявлений для поиска работы
+post.a.job: Разместить работу
+ask.for.a.job: Поиск работы
+enter.some.keywords: Введите запрос (город, страна, должность, ...)
+recent.viewed.jobs: Последние просмотренные вакансии
+job.creation: Добавление вакансии
+job.edit: Изменение вакансии
+
+
+#Job create/edit form
+Category: Категория
+Type: Занятость
+Company: Компания
+Company logo: Логотип компании
+Position: Должность
+Location: Местоположение
+Description: Описание
+How to apply?: Как связаться?
+Public?: Публиковать?
+Whether the job can also be published on affiliate websites or not.: Можно ли публиковать работу на партнерских сайтах или нет.
+Preview your job: Предпросмотр
+Full time: Полная
+Part time: 	Частиная
+Freelance: Фриланс
+Url: Url
+Email: Email
+
+#Job admin panel
+Admin: Админ-панель
+Publish: Публиковать
+Edit: Редактировать
+Delete: Удалить
+Are you sure?: Вы уверены?
+Expired: Срок публикации закончился
+Expires in: Срок публикации закончивается через
+days: дней
+Extend: Продлить
+for another 30 days: на следующие 30 дней
+Bookmark this: Добавить в закладки этот
+to manage this job in the future.: чтобы потом управлять этой вакансией
+
+#Job view form
+posted on: Размещено
+is looking for a: предлагает вакансию

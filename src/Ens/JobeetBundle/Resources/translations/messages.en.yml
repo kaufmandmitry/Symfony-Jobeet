@@ -1,0 +1,45 @@
+title: Jobeet - Your best job board
+post.a.job: Post a Job
+ask.for.a.job: Ask for a job
+enter.some.keywords: Enter some keywords (city, country, position, ...)
+recent.viewed.jobs: Recent viewed jobs
+job.creation: Job creation
+job.edit: Job edit
+
+#Job create/edit form
+Category: Category
+Type: Type
+Company: Company
+Company logo: Company logo
+Position: Position
+Location: Location
+Description: Description
+How to apply?: How to apply?
+Public?: Public?
+Whether the job can also be published on affiliate websites or not.: Whether the job can also be published on affiliate websites or not.
+Preview your job: Preview your job
+Full time: Full time
+Part time: 	Part time
+Freelance: Freelance
+Url: Url
+Email: Email
+
+#Job admin panel
+Admin: Admin
+Publish: Publish
+Edit: Edit
+Delete: Delete
+Are you sure?: Are you sure?
+Expired: Expired
+Expires in: Expires in
+days: days
+Extend: Extend
+for another 30 days: for another 30 days
+Bookmark this: Bookmark this
+to manage this job in the future.: to manage this job in the future.
+
+#Job view form
+posted on: posted on
+is looking for a: is looking for a
+
+
